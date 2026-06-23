@@ -8,10 +8,28 @@ export function NotificationFilter({ value, onChange }) {
       value={value}
       exclusive
       size="small"
+      onChange={onChange}
       sx={{ flexWrap: "wrap", gap: 0.5 }}
     >
       {filters.map((type) => (
-        <ToggleButton value={type} sx={{ textTransform: "none", px: 2 }}>
+        <ToggleButton 
+          key={type} 
+          value={type} 
+          sx={{ 
+            textTransform: "none", 
+            px: 3, 
+            py: 0.5,
+            borderRadius: "20px !important",
+            border: "1px solid rgba(0, 0, 0, 0.12) !important",
+            "&.Mui-selected": {
+              bgcolor: "primary.main",
+              color: "primary.contrastText",
+              "&:hover": {
+                bgcolor: "primary.dark",
+              }
+            }
+          }}
+        >
           {type}
         </ToggleButton>
       ))}
