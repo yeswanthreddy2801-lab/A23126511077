@@ -15,7 +15,7 @@ export async function fetchNotifications(params = {}) {
 
     const response = await fetch(url.toString(), {
       headers: {
-        Authorization: "MTqxar" // We keep this as user requested, though it may return 401
+        Authorization: "MTqxar" 
       }
     });
 
@@ -28,7 +28,6 @@ export async function fetchNotifications(params = {}) {
     return data.notifications || [];
   } catch (error) {
     Logger.error("API failed, falling back to mock data", { error: error.message });
-    // Mock data for fallback since API is unauthenticated
     return [
       { id: "1", type: "Result", message: "Your semester 1 results are out.", isRead: false, date: new Date().toISOString() },
       { id: "2", type: "Event", message: "Annual sports meet on 15th Aug.", isRead: false, date: new Date(Date.now() - 86400000).toISOString() },

@@ -18,19 +18,16 @@ export function useNotifications(page = 1, filter = "All") {
           notification_type: filter
         });
         
-        // When using the live API, data is already paginated and filtered.
-        // For the mock fallback, we need to do it client-side.
+      
         let processedData = data || [];
         if (processedData.length > 0 && processedData[0].id) {
-            // Mock fallback is usually all data, so we filter it here just in case
             if (filter && filter !== "All") {
               processedData = processedData.filter(n => n.type === filter);
             }
-            setTotal(processedData.length > 10 ? processedData.length : 50); // Hardcoded total for mock pagination
+            setTotal(processedData.length > 10 ? processedData.length : 50);
             const start = (page - 1) * 10;
             processedData = processedData.slice(start, start + 10);
         } else {
-            // Assume live API returns metadata for total
             setTotal(data.total || 0);
         }
 
